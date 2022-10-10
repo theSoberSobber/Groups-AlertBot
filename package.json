@@ -2,7 +2,7 @@
   "name": "alertbot",
   "version": "1.0.0",
   "description": "alert bot's group creation utility",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
     "build": "npm install",
     "start": "node main.js"
