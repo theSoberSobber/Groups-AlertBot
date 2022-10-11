@@ -1,5 +1,6 @@
 const express = require('express');
-const path = require('path');
+const { readFile } = require('fs/promises');
+
 const app = express();
 
 app.listen(process.env.PORT || 3000);
@@ -14,5 +15,8 @@ app.get('/group', async (req, res) => {
 })
 
 app.get('/groupIds', async (req, res) => {
-    res.sendFile(path.join(__dirname, 'info.txt'));
+    let file = await readFile('./info.json', 'utf-8');
+    file = await JSON.parse(file);
+    console.log(file);
+    res.json(file);
 })
