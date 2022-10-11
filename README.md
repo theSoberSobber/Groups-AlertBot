@@ -1,3 +1,4 @@
 ## Alert Bot
-https://alert-bot.vercel.app/group
-https://alert-bot.vercel.app/groupIds
+https://alert-bot.vercel.app/ <br />
+https://alert-bot.vercel.app/group <br />
+https://alert-bot.vercel.app/groupIds <br />
