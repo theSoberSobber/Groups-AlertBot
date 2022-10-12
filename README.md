@@ -11,7 +11,7 @@ This is a project that generates dynamic groups that always have bot in them.
 ---
 
 Since vercel doesn't support Websockets, these links won't work, unfortuantely. <br />
-If anyone knows any good serverless (we only need it as an api) hosting provider that supports websockets then please open an issue for the same.
+If anyone knows any free serverless (we only need it as an api) hosting provider that supports websockets then please open an issue for the same.
 
 ---
 
