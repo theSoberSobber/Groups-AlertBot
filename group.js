@@ -8,7 +8,7 @@
                     // create the group and init it
                     // update the info file with the new gid
 
-const maxLimit = 1;
+const maxLimit = 510;
 module.exports = group = async (ws) => {
   // check previous group's meta data
   const { readFile, writeFile } = require("fs/promises");
@@ -27,7 +27,7 @@ module.exports = group = async (ws) => {
   }
 
   // otherwise create the group
-  const groupNum = file.groupIds.length;
+  const groupNum = file.groupIds.length+1;
   const initMembers = [
     "919770483089@s.whatsapp.net",
     "918815065180@s.whatsapp.net",
