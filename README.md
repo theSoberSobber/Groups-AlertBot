@@ -1,6 +1,8 @@
 ## Alert Bot
 This is a project that generates dynamic groups that always have bot in them.
+
 <br />
+
 Steps to run:
     - 1) git clone
     - 2) "yarn" to install dependencies
