@@ -36,7 +36,7 @@ module.exports = group = async (ws, name) => {
     if(!file[name]){file[name] = []};
     const groupNum = file[name].length+1;
     global.desc = `NOTICE GROUP ${groupNum}
-Always Working group link - ${base_uri}
+Always Working group link - ${base_uri}/${name}/group
 Please check if your college is listed in the following list : ${site_uri}/colleges, if not please contact @Pavit
 For errors/request contact @Pavit`;
     const group = await ws.groupCreate(`${name.toUpperCase()} Notice Alerts G${groupNum}`, initMembers);
