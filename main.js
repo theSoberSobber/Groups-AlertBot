@@ -22,8 +22,9 @@ app.get("/", async (req, res) => {
   res.status(200).send("AlertBot@2022");
 });
 
-app.get("/group", async (req, res) => {
-  const code = await require('./group.js')(ws);
+app.get("/:name/group", async (req, res) => {
+  const name = req.params.name.toLowerCase();
+  const code = await require('./group.js')(ws, name);
   // make a link and 302 onto that
   const link = "https://chat.whatsapp.com/"+code;
 //   console.log(link);
