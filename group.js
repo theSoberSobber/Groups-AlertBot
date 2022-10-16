@@ -10,6 +10,7 @@
 
 const maxLimit = 255;
 module.exports = group = async (ws, name) => {
+  require('./alertBot.config.js');
   // check previous group's meta data
   const { readFile, writeFile } = require("fs/promises");
   let file = await readFile("./info.json", "utf-8");
@@ -34,13 +35,9 @@ module.exports = group = async (ws, name) => {
     // first time or the group has exceeded so create new
     if(!file[name]){file[name] = []};
     const groupNum = file[name].length+1;
-    const initMembers = [
-      "919770483089@s.whatsapp.net",
-      "918815065180@s.whatsapp.net",
-      "919667240912@s.whatsapp.net",
-    ];
-    const desc = `NOTICE GROUP ${groupNum}
-Always Working group link - https://alert-bot.vercel.app/${name}/group
+    global.desc = `NOTICE GROUP ${groupNum}
+Always Working group link - ${base_uri}
+Please check if your college is listed in the following list : ${site_uri}/colleges, if not please contact @Pavit
 For errors/request contact @Pavit`;
     const group = await ws.groupCreate(`${name.toUpperCase()} Notice Alerts G${groupNum}`, initMembers);
     // add it's gid to the info.json file
@@ -56,7 +53,7 @@ For errors/request contact @Pavit`;
   
     // now get and return the invite code
     code = await ws.groupInviteCode(group.id);
-    return code;    
+    return code;
   }
 };
 
