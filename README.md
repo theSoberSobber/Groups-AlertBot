@@ -21,7 +21,12 @@ If anyone knows any free serverless (we only need it as an api) hosting provider
 
 ---
 
-Old Vercel Links <br />
+UPDATE: The vercel links work now!
+(we used an ip proxy mapping approach, paired with a custom server! See https://github.com/theSoberSobber/AlertBot-Site for more)
+
+---
+
+# Wokring (Again!) Vercel Links <br />
 https://alert-bot.vercel.app/ <br />
 https://alert-bot.vercel.app/manit/group <br />
 https://alert-bot.vercel.app/dtu/group  etc...<br />
