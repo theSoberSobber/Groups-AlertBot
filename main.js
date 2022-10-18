@@ -7,14 +7,20 @@ const app = express();
 const {default: makeWASocket, useSingleFileAuthState} = require("@adiwajshing/baileys");
 const { state } = useSingleFileAuthState("./sesi.json");
 
+const pino = require('pino');
+
 const ws = makeWASocket({
-    printQRInTerminal: true,
+    logger: pino({ level: 'silent' }),
     browser: ["AlertBot", "AlertBot", "1.0"],
     auth: state,
 });
 
 const {connect} = require('./connect.js');
-connect(ws);
+try {
+  connect(ws);
+} catch {
+  console.log("Connection Error!")
+}
 
 app.listen(process.env.PORT || 3000);
 // _____________________________________
@@ -26,14 +32,17 @@ app.get("/:name/group", async (req, res) => {
   const name = req.params.name.toLowerCase();
   const code = await require('./group.js')(ws, name);
   // make a link and 302 onto that
-  const link = "https://chat.whatsapp.com/"+code;
-//   console.log(link);
-  res.redirect(link);
+  if (code){
+    const link = "https://chat.whatsapp.com/"+code;
+    res.redirect(link);
+  }
+  else {
+    console.log("Code not generated!")
+  }
 });
 
 app.get("/groupIds", async (req, res) => {
   let file = await readFile(path.join(__dirname, "info.json"), "utf-8");
   file = await JSON.parse(file);
-  console.log(file);
   res.json(file);
 });

@@ -8,19 +8,23 @@
                     // create the group and init it
                     // update the info file with the new gid
 
-const maxLimit = 255;
+const maxLimit = 500;
 module.exports = group = async (ws, name) => {
   require('./alertBot.config.js');
   // check previous group's meta data
   const { readFile, writeFile } = require("fs/promises");
-  let file = await readFile("./info.json", "utf-8");
+  let file;
+  try {
+    file = await readFile("./info.json", "utf-8");
+  } catch (e){
+    console.log("Error reading file!" + e)
+    return;
+  }
+
   file = JSON.parse(file);
 
   if(file[name]){
     // already exists
-
-    // problem is that file.name searches for name attribute on file object, NOT MANIT attribute (value of the name variable)
-    // so we use file[name] instead
     const f_gid = file[name][file[name].length - 1];
     const meta = await ws.groupMetadata(f_gid);
     const lenGroup = meta.participants.length;
@@ -56,22 +60,3 @@ For errors/request contact @Pavit`;
     return code;
   }
 };
-
-
-// for testing purposes
-if (require.main === module) {
-    const {default: makeWASocket, useSingleFileAuthState} = require("@adiwajshing/baileys");
-    const { state } = useSingleFileAuthState("./sesi.json");
-    const ws = makeWASocket({
-        printQRInTerminal: true,
-        browser: ["AlertBot", "AlertBot", "1.0"],
-        auth: state,
-    });
-
-    const test = async () => {
-        const {connect} = require('./connect.js');
-        await connect(ws);
-        await group(ws);
-    }
-    test();
-}
