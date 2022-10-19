@@ -15,12 +15,16 @@ const ws = makeWASocket({
     auth: state,
 });
 
-const {connect} = require('./connect.js');
-try {
-  connect(ws);
-} catch {
-  console.log("Connection Error!")
+const main = async () => {
+    const { connect } = require('./connect.js');
+    try {
+      await connect(ws);
+    } catch {
+      console.log("Connection Error!");
+      await connect(ws);
+    }
 }
+main();
 
 app.listen(process.env.PORT || 3000);
 // _____________________________________

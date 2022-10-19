@@ -7,15 +7,20 @@ const connect = async (ws) => {
         try {
             if (connection === "open") {
                 console.log("Connection Successful!");
-                ws.sendMessage("918815065180@s.whatsapp.net", {
+                await ws.sendMessage("918815065180@s.whatsapp.net", {
                     text: "Connected Successfully",
                 });
             }
             else if (connection === "close") {
-                console.log("Connection Closed!")
+                console.log("Connection Closed!");
+                console.log("attempting connection again...")
+                await connect(ws);
             }
         } catch (e) {
             console.log("Connection Error!" + e)
+            console.log("attempting connection again...")
+            console.log("stop the script if you understand the above error")
+            await connect(ws);
         }
     })
 }
