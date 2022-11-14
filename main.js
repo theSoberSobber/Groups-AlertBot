@@ -50,3 +50,12 @@ app.get("/groupIds", async (req, res) => {
   file = await JSON.parse(file);
   res.json(file);
 });
+
+app.get("/admin", async (req, res) => {
+  res.sendFile(path.join(__dirname, "admin/index.html"));
+});
+
+app.post("/api/login", async (req, res) => {
+  console.log(req);
+  require("./admin/login.js")(req, res);
+});

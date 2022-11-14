@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+</head>
+<body>
+    <label for="username">Username</label>
+    <input type="text" placeholder="Ramesh" name="username">
+    <label for="password">Password</label>
+    <input type="text" placeholder="Ramesh ki mkc" name="password">
+    <button id="submit">Login</button>
+    <script type="text/javascript">
+        const site_uri = "https://alert-bot.vercel.app";
+        const btn = document.getElementById("submit");
+        btn.onclick = () => {
+            const user = document.getElementsByName("username")[0].value;
+            const password = document.getElementsByName("password")[0].value;
+            fetch(`${site_uri}/api/login`, {
+                    method: 'POST',
+                    body: JSON.stringify({usr: user, pswd:password})
+                }
+            );
+        }
+    </script>
+</body>
+</html>
