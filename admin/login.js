@@ -1,8 +1,8 @@
 module.exports = login = async (req, res) => {
-    // let body = await JSON.parse(req.body);
-    // let usr = body.usr;
-    // let pswd = body.pswd;
-    // console.log(usr, pswd);
-    console.log(req.body);
-    res.send('abc');
+    const body = req.body;
+    const user = body.usr;
+    const pwd = body.pswd;
+    console.log(user);
+    console.log(pwd);
+    res.send("HMMM");
 }

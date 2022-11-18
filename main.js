@@ -4,6 +4,9 @@ const path = require("path");
 
 const app = express();
 
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+
 const {default: makeWASocket, useSingleFileAuthState} = require("@adiwajshing/baileys");
 const { state } = useSingleFileAuthState("./sesi.json");
 
@@ -55,7 +58,6 @@ app.get("/admin", async (req, res) => {
   res.sendFile(path.join(__dirname, "admin/index.html"));
 });
 
-app.post("/api/login", async (req, res) => {
-  console.log(req);
+app.post("/api/login" ,async (req, res) => {
   require("./admin/login.js")(req, res);
 });

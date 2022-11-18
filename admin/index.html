@@ -13,12 +13,17 @@
     <input type="text" placeholder="Ramesh ki mkc" name="password">
     <button id="submit">Login</button>
     <script type="text/javascript">
-        const site_uri = "https://alert-bot.vercel.app";
+        const site_uri = "localhost:3000";
         const btn = document.getElementById("submit");
-        btn.onclick = () => {
+        btn.onclick = async() => {
+            console.log(1);
             const user = document.getElementsByName("username")[0].value;
             const password = document.getElementsByName("password")[0].value;
-            fetch(`${site_uri}/api/login`, {
+            await fetch("/api/login", {
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
                     method: 'POST',
                     body: JSON.stringify({usr: user, pswd:password})
                 }
